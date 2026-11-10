@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Cam Fitness — move with purpose, grow with strength.">
+<title>Cam Fitness | Move With Purpose</title>
+<style>
+:root{
+  --ink:#17233b; --muted:#65718a; --paper:#fffdf8; --white:#fff;
+  --orange:#ff704d; --yellow:#ffd45c; --teal:#31c6b1; --blue:#4568e8;
+  --pink:#ff8db5; --line:#e9e8e2; --shadow:0 18px 50px rgba(28,43,76,.10);
+  --radius:24px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+.wrap{width:min(1140px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(255,253,248,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(23,35,59,.08)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:-.7px;font-size:1.18rem}
+.brand-mark{width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,var(--orange),var(--pink));display:grid;place-items:center;color:white;font-weight:1000;font-size:1.1rem;box-shadow:0 8px 18px #ff704d55}
+.navlinks{display:flex;align-items:center;gap:23px;font-size:.88rem;font-weight:700;color:#4e5a72}
+.navlinks a:hover{color:var(--orange)}
+.nav-cta,.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:12px 19px;font-weight:800;cursor:pointer;transition:.2s; background:var(--ink);color:white}
+.nav-cta:hover,.btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px #17233b2a}
+.menu-btn{display:none;border:0;background:var(--yellow);border-radius:12px;padding:9px 12px;font-weight:900}
+.hero{padding:76px 0 70px;overflow:hidden;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:#fff0e9;color:#d84e30;padding:8px 13px;font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+h1{font-size:clamp(3.2rem,7vw,6.1rem);line-height:.98;letter-spacing:-.075em;margin:22px 0}
+h1 .accent{color:var(--orange)}
+.hero p{font-size:1.12rem;color:var(--muted);max-width:520px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:27px}
+.btn.primary{background:var(--orange);color:#fff}
+.btn.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.hero-note{font-size:.82rem!important;margin-top:18px}
+.hero-art{min-height:470px;position:relative;display:grid;place-items:center}
+.art-circle{width:min(420px,85vw);aspect-ratio:1;border-radius:48% 52% 58% 42% / 48% 42% 58% 52%;background:linear-gradient(145deg,#ffe16f,#ff9c75);position:absolute;transform:rotate(-8deg)}
+.art-card{position:relative;width:76%;background:var(--ink);color:#fff;border-radius:30px;padding:28px;box-shadow:var(--shadow);transform:rotate(4deg)}
+.art-card .big{font-size:5.3rem;line-height:1;font-weight:1000;letter-spacing:-.08em;color:var(--yellow)}
+.art-card h3{font-size:1.5rem;line-height:1.1;margin:12px 0}
+.art-card p{color:#d5d9e6;font-size:.9rem}
+.pill{display:inline-block;background:var(--teal);color:#113b3a;border-radius:999px;padding:7px 12px;font-size:.75rem;font-weight:900}
+.float{position:absolute;border-radius:20px;padding:14px 18px;font-weight:900;box-shadow:var(--shadow)}
+.float.one{top:55px;right:0;background:var(--pink);transform:rotate(7deg)}
+.float.two{bottom:55px;left:0;background:var(--teal);transform:rotate(-7deg)}
+.section{padding:82px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:30px}
+.kicker{color:var(--orange);font-size:.78rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+h2{font-size:clamp(2.1rem,4vw,3.5rem);line-height:1.05;letter-spacing:-.055em;margin:8px 0}
+.section-head p{max-width:440px;color:var(--muted);margin:0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:0 8px 30px rgba(28,43,76,.04)}
+.panel h3{margin:0 0 10px;font-size:1.25rem}
+.panel p{margin:0;color:var(--muted)}
+.mini-icon{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:1.35rem;margin-bottom:20px}
+.mission .mini-icon{background:#fff0e9}.vision .mini-icon{background:#e4faf6}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.value{border-radius:18px;padding:18px;background:#fff7db;font-weight:850}
+.value:nth-child(2){background:#e5f8f5}.value:nth-child(3){background:#ffeaf1}
+.dark-section{background:var(--ink);color:#fff}
+.dark-section .section-head p{color:#c0c7d7}
+.report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.report-card{background:#253451;border:1px solid #3b4963;border-radius:22px;padding:24px}
+.report-card .date{font-size:.78rem;color:var(--yellow);font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+.report-card h3{font-size:1.25rem;line-height:1.2;margin:12px 0}
+.report-card p{font-size:.92rem;color:#c0c7d7}
+.tag{display:inline-block;border-radius:999px;padding:6px 10px;background:#3b4963;color:#fff;font-size:.72rem;font-weight:800}
+.notice{margin-top:22px;border-left:4px solid var(--yellow);padding:12px 16px;background:#202d47;border-radius:0 12px 12px 0;color:#d9dfeb;font-size:.84rem}
+.progress-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:34px;align-items:start}
+.progress-intro{position:sticky;top:110px}
+.progress-intro p{color:var(--muted)}
+.progress-list{display:grid;gap:14px}
+.progress-item{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+.progress-top{display:flex;justify-content:space-between;gap:16px;font-weight:850}
+.progress-item p{margin:8px 0 13px;color:var(--muted);font-size:.9rem}
+.track{height:9px;background:#f0f0eb;border-radius:99px;overflow:hidden}
+.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--teal),var(--blue))}
+.progress-item:nth-child(2) .fill{background:linear-gradient(90deg,var(--orange),var(--pink))}
+.progress-item:nth-child(3) .fill{background:linear-gradient(90deg,var(--yellow),var(--orange))}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.news-card{border-radius:22px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.news-visual{height:155px;display:grid;place-items:center;font-size:3.7rem}
+.news-card:nth-child(1) .news-visual{background:#dff8f2}
+.news-card:nth-child(2) .news-visual{background:#fff0c6}
+.news-card:nth-child(3) .news-visual{background:#ffe4ed}
+.news-body{padding:22px}
+.news-body small{font-weight:900;color:var(--orange);text-transform:uppercase;letter-spacing:.08em}
+.news-body h3{line-height:1.2;margin:9px 0}
+.news-body p{color:var(--muted);font-size:.9rem;margin:0}
+.contact{background:linear-gradient(135deg,#ff7956,#ff9db8);padding:70px 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.contact h2{color:#fff}
+.contact p{color:#fff8f5;max-width:480px}
+.contact-box{background:#fff;border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+.contact-box label{display:block;font-size:.82rem;font-weight:850;margin:12px 0 6px}
+.contact-box input,.contact-box textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fffdf8;outline:none}
+.contact-box input:focus,.contact-box textarea:focus{border-color:var(--blue)}
+.contact-box textarea{min-height:100px;resize:vertical}
+.contact-box button{margin-top:14px;width:100%}
+footer{padding:27px 0;background:#111b30;color:#c5ccda}
+.footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:.83rem}
+footer strong{color:#fff}
+.small-links{display:flex;gap:16px;flex-wrap:wrap}
+.disclaimer{font-size:.75rem;color:#8d99b0;margin-top:10px}
+@media(max-width:850px){
+ .navlinks{display:none;position:absolute;top:76px;left:0;right:0;padding:18px 22px 22px;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}
+ .navlinks.open{display:flex}.menu-btn{display:block}.nav-cta{display:none}
+ .hero-grid,.contact-grid,.progress-layout{grid-template-columns:1fr}
+ .hero{padding-top:52px}.hero-art{min-height:390px}
+ .report-grid,.news-grid{grid-template-columns:1fr 1fr}
+ .progress-intro{position:static}
+}
+@media(max-width:580px){
+ .wrap{width:min(100% - 30px,1140px)}
+ .section{padding:60px 0}.hero-art{min-height:330px}
+ .art-card{width:82%;padding:22px}.art-card .big{font-size:4.2rem}
+ .float.one{right:-2px;top:22px}.float.two{bottom:22px}
+ .section-head{display:block}.section-head p{margin-top:12px}
+ .about-grid,.values,.report-grid,.news-grid{grid-template-columns:1fr}
+ .footer-row{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="Cam Fitness home"><span class="brand-mark">CF</span><span>CAM FITNESS</span></a>
+    <nav class="navlinks" id="navlinks" aria-label="Main navigation">
+      <a href="#home">Home</a><a href="#about">About Us</a><a href="#periodic">Periodic Report</a>
+      <a href="#progress">Progress Report</a><a href="#news">News Releases</a><a href="#contact">Contact Us</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Get in touch ↗</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+ <div class="wrap hero-grid">
+  <div>
+   <span class="eyebrow">⚡ Your energy. Your journey.</span>
+   <h1>Move with<br><span class="accent">purpose.</span><br>Grow with strength.</h1>
+   <p>Welcome to Cam Fitness — a sports and fitness brand built to encourage active living, confidence, and progress one step at a time.</p>
+   <div class="hero-actions"><a class="btn primary" href="#about">Discover Cam Fitness ↗</a><a class="btn secondary" href="#news">See what's new</a></div>
+   <p class="hero-note">Train smart. Stay consistent. Celebrate every win.</p>
+  </div>
+  <div class="hero-art" aria-label="Cam Fitness motivational graphic">
+   <div class="art-circle"></div>
+   <div class="art-card"><span class="pill">CAM FITNESS CLUB</span><div class="big">GO!</div><h3>Small steps.<br>Stronger you.</h3><p>Build healthy habits and keep showing up for yourself.</p></div>
+   <div class="float one">💪 KEEP GOING</div><div class="float two">✦ PROGRESS OVER PERFECTION</div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="about">
+ <div class="wrap">
+  <div class="section-head"><div><div class="kicker">Who we are</div><h2>Fitness for every<br>kind of journey.</h2></div><p>Cam Fitness believes that being active is about more than performance. It is about building healthy habits, discovering what you can do, and enjoying the process.</p></div>
+  <div class="about-grid">
+   <article class="panel mission"><div class="mini-icon">🎯</div><h3>Our Mission</h3><p>To inspire people to live healthier and more active lives by promoting fitness, sports participation, discipline, and confidence through accessible and encouraging fitness experiences.</p></article>
+   <article class="panel vision"><div class="mini-icon">🌟</div><h3>Our Vision</h3><p>To become a trusted and uplifting fitness brand that motivates individuals and communities to make movement, wellness, and personal growth part of everyday life.</p></article>
+  </div>
+  <div class="values"><div class="value">🤝 Community</div><div class="value">🔥 Commitment</div><div class="value">🌱 Growth</div></div>
+ </div>
+</section>
+
+<section class="section dark-section" id="periodic">
+ <div class="wrap">
+  <div class="section-head"><div><div class="kicker">Company updates</div><h2>Periodic Report</h2></div><p>A regular snapshot of activities, plans, and company highlights. Replace the sample entries below with your group's actual updates.</p></div>
+  <div class="report-grid">
+   <article class="report-card"><div class="date">Sample report · 01</div><h3>Planning and goal setting</h3><p>The team identifies its target audience, defines its fitness-focused purpose, and plans activities that support the company's direction.</p><span class="tag">Planning</span></article>
+   <article class="report-card"><div class="date">Sample report · 02</div><h3>Brand development</h3><p>Work is focused on developing the Cam Fitness identity, including its visual style, key messages, and communication materials.</p><span class="tag">Branding</span></article>
+   <article class="report-card"><div class="date">Sample report · 03</div><h3>Community engagement</h3><p>The team prepares ideas for sharing practical fitness reminders and encouraging people to participate in healthy activities.</p><span class="tag">Community</span></article>
+  </div>
+  <div class="notice">✦ These are starter examples for your school project, not verified company activities. Add your actual reporting period, dates, and accomplishments.</div>
+ </div>
+</section>
+
+<section class="section" id="progress">
+ <div class="wrap progress-layout">
+  <div class="progress-intro"><div class="kicker">Where we're headed</div><h2>Progress<br>Report</h2><p>Track the work your group is doing to build Cam Fitness. The sample progress levels are illustrative — adjust them to match your real project.</p><a class="btn primary" href="#contact">Connect with us ↗</a></div>
+  <div class="progress-list">
+   <article class="progress-item"><div class="progress-top"><span>Company concept and identity</span><span>100%</span></div><p>Drafting the brand purpose, mission, vision, and overall direction.</p><div class="track"><div class="fill" style="width:100%"></div></div></article>
+   <article class="progress-item"><div class="progress-top"><span>Website and content preparation</span><span>75%</span></div><p>Organizing the website pages and preparing introductory company information.</p><div class="track"><div class="fill" style="width:75%"></div></div></article>
+   <article class="progress-item"><div class="progress-top"><span>Promotional materials</span><span>40%</span></div><p>Planning creative posts and information materials for the brand.</p><div class="track"><div class="fill" style="width:40%"></div></div></article>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="news" style="background:#fff8ed">
+ <div class="wrap">
+  <div class="section-head"><div><div class="kicker">What's happening</div><h2>News Releases</h2></div><p>Announcements and stories from Cam Fitness. Update these sample posts when your group has real news to share.</p></div>
+  <div class="news-grid">
+   <article class="news-card"><div class="news-visual">🏃‍♀️</div><div class="news-body"><small>Brand announcement</small><h3>Introducing Cam Fitness</h3><p>Cam Fitness is created to celebrate active lifestyles, personal improvement, and the power of showing up for yourself.</p></div></article>
+   <article class="news-card"><div class="news-visual">🥤</div><div class="news-body"><small>Wellness reminder</small><h3>Make hydration a habit</h3><p>Remember to drink water throughout the day, especially before, during, and after physical activity.</p></div></article>
+   <article class="news-card"><div class="news-visual">🏐</div><div class="news-body"><small>Community spotlight</small><h3>Every move counts</h3><p>Walking, dancing, playing a sport, or stretching can all be ways to add more movement to your routine.</p></div></article>
+  </div>
+ </div>
+</section>
+
+<section class="contact" id="contact">
+ <div class="wrap contact-grid">
+  <div><div class="kicker" style="color:#fff">Let's connect</div><h2>Start your<br>next strong chapter.</h2><p>Have a question, suggestion, or idea for Cam Fitness? Send your group a message and keep the conversation moving.</p><p><strong>Cam Fitness</strong><br>Sports & Fitness</p></div>
+  <form class="contact-box" id="contactForm">
+   <h3 style="margin:0 0 5px">Send a message</h3><p style="margin:0;color:var(--muted);font-size:.85rem">This demo form opens your email app when configured.</p>
+   <label for="name">Your name</label><input id="name" name="name" placeholder="Enter your name" required>
+   <label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com" required>
+   <label for="message">Message</label><textarea id="message" name="message" placeholder="Write your message..." required></textarea>
+   <button class="btn primary" type="submit">Prepare message ↗</button>
+   <p id="formNote" style="font-size:.78rem;color:var(--muted);margin:10px 0 0">Before publishing, replace the demo contact details and connect a real email address.</p>
+  </form>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="footer-row"><div><strong>CAM FITNESS</strong> · Move with purpose. Grow with strength.</div><div class="small-links"><a href="#about">About</a><a href="#periodic">Reports</a><a href="#news">News</a><a href="#contact">Contact</a></div></div>
+  <div class="disclaimer">Student project website concept. Sample reports, progress percentages, and announcements should be reviewed and replaced with your group's actual information before submission.</div>
+ </div>
+</footer>
+<script>
+const menuBtn=document.getElementById('menuBtn');
+const navlinks=document.getElementById('navlinks');
+menuBtn.addEventListener('click',()=>{const open=navlinks.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));menuBtn.textContent=open?'✕':'☰';});
+navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navlinks.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.textContent='☰';}));
+document.getElementById('contactForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const name=document.getElementById('name').value.trim();
+ const email=document.getElementById('email').value.trim();
+ const message=document.getElementById('message').value.trim();
+ const subject=encodeURIComponent('Message for Cam Fitness');
+ const body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\n'+message);
+ // Replace the address below with your group's real email address before publishing.
+ window.location.href='mailto:YOUR-GROUP-EMAIL@example.com?subject='+subject+'&body='+body;
+ document.getElementById('formNote').textContent='If your email app does not open, replace the demo email address in the website code with your group's address.';
+});
+</script>
+</body>
+</html>
